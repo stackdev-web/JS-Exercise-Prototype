@@ -39,12 +39,45 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-  
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
 
+Person.prototype.eat = function(edible){
+  if(this.stomach.length < 10){
+    this.stomach.push(edible);
+  }
+}
 
+Person.prototype.poop = function(){
+  this.stomach = [];
+}
 
+Person.prototype.toString = function(){
+  return `${this.name}, ${this.age}`;
+}
+
+const james = new Person('James', 31);
+const sam = new Person('Sam', 37);
+const latoya = new Person('Latoya', 32);
+
+console.log(james.toString());
+console.log(sam.toString());
+console.log(latoya.toString());
+
+james.eat('noodles');
+james.eat('fun food');
+james.eat('tacos')
+james.eat('sandwich');
+james.eat('sushi');
+james.eat('cake');
+
+console.log('James stomach', james.stomach);
+
+console.log(james.poop);
+console.log(james.stomach);
 
 
 
@@ -63,10 +96,26 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-  
+function Car(tank, odometer) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = tank;
+  this.odometer = odometer;
 }
 
+
+Car.prototype.fill = function(gallons){
+  return this.tank = this.tank + gallons;
+}
+
+
+
+const bertha = new Car(0, 0);
+const fred = new Car(0,0);
+const ethel = new Car(0,0);
+
+console.log(bertha.fill(10));
+console.log(bertha.tank);
 
 /*
   TASK 3
@@ -75,18 +124,65 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
- 
+function Parent(inherit){
+  this.name = inherit.name;
+  this.gender = inherit.gender;
+  this.favFood = inherit.favFood;
 }
+
+Parent.prototype.eat = function(){
+  return `${this.name} eats their ${favFood}`;
+}
+
+
+function Baby(inherit) {
+ Parent.call(this, inherit);
+ this.toy = inherit.toy;
+}
+
+Baby.prototype = Object.create(Parent.prototype);
+
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.toy}`;
+}
+
+// create a child constructor functions 
+
+
+const babyOne = new Baby({
+  name: 'Anna',
+  gender: 'female',
+  favFood: 'crackers',
+  toy: 'rattle'
+});
+
+const babyTwo = new Baby({
+  name: 'Angus',
+  gender: 'male',
+  favFood: 'beef dogs',
+  toy: 'blanket'
+});
+
+const babyThree = new Baby({
+  name: 'Fred',
+  gender: 'male',
+  favFood: 'spaghetti',
+  toy: 'play pen'
+});
+
+
+console.log(babyOne.play());
+
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Simple function call. simple function call: in non-strict mode this will default to the global object but in strict mode it will error as 'undefined'
+  2. implicit binding: this points to the object to the left of the period when the function is called
+  3. explicit binding: set this to point to a certain value using call, apply or bind
+  4. new binding: Using the new keyword constructs a new object, and this points it
 */
 
 
