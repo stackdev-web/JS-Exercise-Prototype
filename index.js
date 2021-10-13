@@ -123,25 +123,13 @@ console.log(carThree.tank);
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Parent(inherit){
-  this.name = name;
-  this.gender = gender;
-  this.age = age;
-  this.favFood = favFood;
-}
-
-Parent.prototype.eat = function(){
-  return `${this.name} eats their ${favFood}`;
-}
-
 
 function Baby(inherit) {
- Parent.call(this, inherit);
+ Person.call(this, inherit);
  this.toy = inherit.toy;
 }
 
-Baby.prototype = Object.create(Parent.prototype);
-
+Baby.prototype = Object.create(Person.prototype);
 
 Baby.prototype.play = function(){
   return `Playing with ${this.toy}`;
@@ -152,27 +140,29 @@ Baby.prototype.play = function(){
 
 const babyOne = new Baby({
   name: 'Anna',
-  gender: 'female',
-  favFood: 'crackers',
+  age: 1,
+  stomach: 0,
   toy: 'rattle'
 });
 
 const babyTwo = new Baby({
   name: 'Angus',
-  gender: 'male',
-  favFood: 'beef dogs',
+  age: 3,
+  stomach: 0,
   toy: 'blanket'
 });
 
 const babyThree = new Baby({
   name: 'Fred',
-  gender: 'male',
-  favFood: 'spaghetti',
+  age: .5,
+  stomach: 0,
   toy: 'play pen'
 });
 
 
 console.log(babyOne.play());
+console.log(babyTwo.name);
+console.log(babyThree.age);
 
 
 
