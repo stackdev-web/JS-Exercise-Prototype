@@ -96,27 +96,26 @@ console.log(james.stomach);
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car(tank, odometer) {
+function Car(model, milesPerGallon, tank, odometer) {
   this.model = model;
   this.milesPerGallon = milesPerGallon;
-  this.tank = tank;
-  this.odometer = odometer;
+  this.tank = 0;
+  this.odometer = 0;
 }
-
 
 Car.prototype.fill = function(gallons){
   return this.tank = this.tank + gallons;
 }
 
+const carOne = new Car('Chevy', 20, 0, 0);
+const carTwo = new Car('Pontiac', 30, 0,0);
+const carThree = new Car('Ford', 35, 0,0);
 
-
-const bertha = new Car(0, 0);
-const fred = new Car(0,0);
-const ethel = new Car(0,0);
-
-console.log(bertha.fill(10));
-console.log(bertha.tank);
-
+console.log(carOne.fill(10));
+console.log(carOne.tank);
+console.log(carTwo.fill(15));
+console.log(carTwo.tank);
+console.log(carThree.tank);
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -125,9 +124,10 @@ console.log(bertha.tank);
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Parent(inherit){
-  this.name = inherit.name;
-  this.gender = inherit.gender;
-  this.favFood = inherit.favFood;
+  this.name = name;
+  this.gender = gender;
+  this.age = age;
+  this.favFood = favFood;
 }
 
 Parent.prototype.eat = function(){
