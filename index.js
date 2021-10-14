@@ -124,48 +124,35 @@ console.log(carThree.tank);
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby(inherit) {
- Person.call(this, inherit);
- this.toy = inherit.toy;
+
+
+function Baby(name, age, favoriteToy) {
+ Person.call(this, name, age);
+ this.favoriteToy = favoriteToy;
+
 }
 
 Baby.prototype = Object.create(Person.prototype);
 
 Baby.prototype.play = function(){
-  return `Playing with ${this.toy}`;
-}
+  return `Playing with ${this.favoriteToy}`;
+  }
 
 // create a child constructor functions 
+     
 
+const babyOne = new Baby('Anna', 1,'rattle');
 
-const babyOne = new Baby({
-  name: 'Anna',
-  age: 1,
-  stomach: 0,
-  toy: 'rattle'
-});
+const babyTwo = new Baby('Angus', 3, 'blanket');
 
-const babyTwo = new Baby({
-  name: 'Angus',
-  age: 3,
-  stomach: 0,
-  toy: 'blanket'
-});
+const babyThree = new Baby('Fred', .5, 'play pen');
 
-const babyThree = new Baby({
-  name: 'Fred',
-  age: .5,
-  stomach: 0,
-  toy: 'play pen'
-});
-
-
-console.log(babyOne.play());
+console.log(babyOne.favoriteToy);
 console.log(babyTwo.name);
 console.log(babyThree.age);
 
 
-
+  
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
